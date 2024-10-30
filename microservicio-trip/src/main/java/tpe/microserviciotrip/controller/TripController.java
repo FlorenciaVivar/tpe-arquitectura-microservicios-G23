@@ -6,11 +6,11 @@ import java.util.List;
 public class TripController {
 
     @Autowired
-    TripService tripService;
+    tpe.microserviciotrip.TripService tripService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Trip>> getAllTrips() {
-        List<Trip> t = tripService.getAll();
+    public ResponseEntity<List<tpe.microserviciotrip.Trip>> getAllTrips() {
+        List<tpe.microserviciotrip.Trip> t = tripService.getAll();
         if (t.isEmpty()) {
             return  ResponseEntity.noContent().build();
         }
@@ -18,7 +18,7 @@ public class TripController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Trip> getTripById(@PathVariable("id") Long id) {
+    public ResponseEntity<tpe.microserviciotrip.Trip> getTripById(@PathVariable("id") Long id) {
         Trip t = tripService.findById(id);
         if (t == null) {
             return  ResponseEntity.notFound().build();
@@ -31,3 +31,4 @@ public class TripController {
         tripEntity e.t = tripService.save(t);
         return ResponseEntity.ok(e.t);
     }
+}

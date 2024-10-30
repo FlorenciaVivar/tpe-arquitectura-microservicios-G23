@@ -1,4 +1,4 @@
-package tpe.microserviciomonopatines;
+package tpe.microservicioscooter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
