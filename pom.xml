@@ -7,12 +7,14 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.5</version>
         <relativePath/> <!-- lookup parent from repository -->
+
     </parent>
     <groupId>tpe</groupId>
     <artifactId>tpe-arqui-microservicios-G23</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>tpe-arqui-microservicios-G23</name>
     <description>tpe-arqui-microservicios-G23</description>
+    <packaging>pom</packaging>
 
     <modules>
         <module>microservicio-scooters</module>
