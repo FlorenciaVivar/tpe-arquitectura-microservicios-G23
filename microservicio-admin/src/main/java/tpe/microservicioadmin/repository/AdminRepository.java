@@ -1,4 +1,4 @@
-package tpe.microservicioadmin
+package tpe.microservicioadmin;
 
 import com.example.microserviciobike.entity.AdminEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

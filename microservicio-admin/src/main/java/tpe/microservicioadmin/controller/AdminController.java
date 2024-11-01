@@ -1,5 +1,5 @@
 
-package tpe.microservicioadmin
+package tpe.microservicioadmin;
 
 import com.example.microserviciobike.entity.AdminEntity;
 import com.example.microservicioadmin.service.adminService;
@@ -36,11 +36,11 @@ public class adminController {
 
     @PostMapping("")
     public ResponseEntity<AdminEntity> save(@RequestBody AdminEntity adm) {
-        AdminEntity e.adm = adminServiceService.save(adm);
-        return ResponseEntity.ok(e.adm);
+        AdminEntity aAdm = adminServiceService.save(adm);
+        return ResponseEntity.ok(aAdm);
     }
 
-    public void Set
+  
 
 
 
