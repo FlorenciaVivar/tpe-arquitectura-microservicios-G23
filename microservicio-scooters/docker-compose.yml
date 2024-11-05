@@ -1,9 +1,9 @@
 services:
   mysql:
     image: mysql:5.7
-    container_name: mysqlScooters
+    container_name: mysqlScooter
     environment:
       MYSQL_ROOT_PASSWORD: "123"
-      MYSQL_DATABASE: scooters
+      MYSQL_DATABASE: scooter
     ports:
-    - "3308:3306"
+      - "3306:3306"

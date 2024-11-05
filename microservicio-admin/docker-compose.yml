@@ -6,4 +6,4 @@ services:
       MYSQL_ROOT_PASSWORD: "123"
       MYSQL_DATABASE: admin
     ports:
-    - "3309:3306"
+      - "3309:3306"

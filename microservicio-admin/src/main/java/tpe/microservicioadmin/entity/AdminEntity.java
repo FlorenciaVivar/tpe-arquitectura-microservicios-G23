@@ -1,4 +1,4 @@
-package tpe.microservicioadmin;
+package tpe.microservicioadmin.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,8 +17,6 @@ public class AdminEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private Int precioInicio;
-
-
-
+    private Integer tarifaNormal;
+    private Integer tarifaExtra; // tarifa extra por reinicio de pausas extensas.
 }

@@ -1,8 +1,10 @@
-package tpe.microservicioadmin;
-import com.example.microservicioadmin.entity.AdminEntity;
-import com.example.microservicioadmin.repository.AdminRepository;
+package tpe.microservicioadmin.service;
+
+import tpe.microservicioadmin.entity.AdminEntity;
+import tpe.microservicioadmin.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tpe.microservicioadmin.feignClients.UserFeignClient;
 
 import java.util.List;
 
@@ -12,29 +14,32 @@ public class AdminService {
     @Autowired
     AdminRepository adminRepository;
 
-    public List<AdminEntity> getAll(){
+    @Autowired
+    UserFeignClient userFeignClient;
+
+    public List<AdminEntity> getAll() {
         return adminRepository.findAll();
     }
 
-    public AdminEntity save(AdminEntity admin){
+    public AdminEntity save(AdminEntity admin) {
         AdminEntity adm;
         adm = adminRepository.save(admin);
         return adm;
     }
-    public void delete(AdminEntity adm){
 
-        AdminRepository.delete(adm);
+    public void delete(AdminEntity adm) {
+        adminRepository.delete(adm);
     }
 
-    public AdminEntity findById(Long id){
+    public AdminEntity findById(Long id) {
         return adminRepository.findById(id).orElse(null);
     }
 
-    public AdminEntity update(AdminEntity adm){
+    public AdminEntity update(AdminEntity adm) {
         return adminRepository.save(adm);
     }
 
-    public List<AdminEntity> byUserId(Long userid){
-        return adminRepository.findByUserId(userid);
+    public void deleteById(Long id) {
+        adminRepository.deleteById(id);
     }
 }

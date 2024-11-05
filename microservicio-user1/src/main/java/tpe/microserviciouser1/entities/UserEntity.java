@@ -1,4 +1,4 @@
-package tpe.microserviciouser.entities;
+package tpe.microserviciouser1.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,8 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class userEntity {
+public class UserEntity {
+
     @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -24,6 +25,8 @@ public class userEntity {
     private String surname;
     private String mail;
     private Integer telephone;
-    private LocalDate registrationDate = LocalDate.now(); ;
-
+    private LocalDate registrationDate;
+    //private String ubication;
 }
+
+//hacer entity cuenta para mercadopago.
