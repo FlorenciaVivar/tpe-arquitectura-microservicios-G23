@@ -13,9 +13,7 @@ public class StationService {
     StationRepository stationRepository;
 
     // Agregar una nueva parada TAMBIEN LO DEBE HACE EL ADMIN
-    public StationEntity addStation(StationEntity station) {
-        return stationRepository.save(station);
-    }
+    public StationEntity addStation(StationEntity station) { return stationRepository.save(station); }
 
     public StationEntity findById(Long id){
         return stationRepository.findById(id).orElse(null);
@@ -25,6 +23,7 @@ public class StationService {
         return stationRepository.findAll();
     }
 
+    public void delete(StationEntity station){ stationRepository.delete(station);}
 
 
 }

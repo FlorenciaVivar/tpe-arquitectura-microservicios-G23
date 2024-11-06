@@ -1,6 +1,8 @@
 package tpe.microservicioadmin.service;
 
 import tpe.microservicioadmin.entity.AdminEntity;
+import tpe.microservicioadmin.feignClients.ScooterFeignClient;
+import tpe.microservicioadmin.model.Scooter;
 import tpe.microservicioadmin.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,19 +19,16 @@ public class AdminService {
     @Autowired
     UserFeignClient userFeignClient;
 
+    @Autowired
+    ScooterFeignClient scooterFeignClient;
+
     public List<AdminEntity> getAll() {
         return adminRepository.findAll();
     }
 
-    public AdminEntity save(AdminEntity admin) {
-        AdminEntity adm;
-        adm = adminRepository.save(admin);
-        return adm;
-    }
+    public AdminEntity save(AdminEntity admin) {return  adminRepository.save(admin);}
 
-    public void delete(AdminEntity adm) {
-        adminRepository.delete(adm);
-    }
+    public void delete(AdminEntity adm) { adminRepository.delete(adm);}
 
     public AdminEntity findById(Long id) {
         return adminRepository.findById(id).orElse(null);
@@ -42,4 +41,6 @@ public class AdminService {
     public void deleteById(Long id) {
         adminRepository.deleteById(id);
     }
+
+
 }

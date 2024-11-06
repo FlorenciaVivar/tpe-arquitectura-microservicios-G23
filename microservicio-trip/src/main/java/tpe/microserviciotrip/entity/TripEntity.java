@@ -16,12 +16,6 @@ public class TripEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @ManyToOne
-//    @JoinColumn(name = "id", nullable = false)
-//    private userEntity user;
-//    @ManyToOne
-//    @JoinColumn(name = "id", nullable = false)
-//    private scooterEntity scooter;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private double distanceTraveled;

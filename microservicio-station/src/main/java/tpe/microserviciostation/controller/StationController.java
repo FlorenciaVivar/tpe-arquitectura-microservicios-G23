@@ -30,10 +30,19 @@ public class StationController {
         }
         return ResponseEntity.ok(station);
     }
-    @PostMapping("")
+    @PostMapping("/addStation")
     public ResponseEntity<StationEntity> addStation(@RequestBody StationEntity station) {
         StationEntity newStation = stationService.addStation(station);
         return ResponseEntity.ok(newStation);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStation(@PathVariable Long id) {
+        StationEntity station = stationService.findById(id);
+        if (station == null){
+            return ResponseEntity.notFound().build();
+        }
+        stationService.delete(station);
+        return ResponseEntity.noContent().build();
+    }
 }

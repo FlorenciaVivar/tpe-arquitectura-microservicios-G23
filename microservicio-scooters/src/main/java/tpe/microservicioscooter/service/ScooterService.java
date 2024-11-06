@@ -15,11 +15,8 @@ public class ScooterService {
     public List<ScooterEntity> getAll(){
         return scooterRepository.findAll();
     }
-    public ScooterEntity save(ScooterEntity scooter){
-        ScooterEntity scooterNew;
-        scooterNew = scooterRepository.save(scooter);
-        return scooterNew;
-    }
+
+    public ScooterEntity save(ScooterEntity scooter){return scooterRepository.save(scooter);}
 
     public ScooterEntity findById(Long id){
         return scooterRepository.findById(id).orElse(null);

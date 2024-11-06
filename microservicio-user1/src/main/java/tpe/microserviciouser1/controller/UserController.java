@@ -17,7 +17,6 @@ public class UserController {
 
     @GetMapping("")
     public ResponseEntity<List<UserEntity>> getAllUsers(){
-
         List<UserEntity> user = userService.getAll();
         if (user.isEmpty()){
             return ResponseEntity.noContent().build();
