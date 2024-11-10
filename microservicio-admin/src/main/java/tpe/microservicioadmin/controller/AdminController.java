@@ -12,6 +12,7 @@ import tpe.microservicioadmin.model.Station;
 import tpe.microservicioadmin.service.AdminService;
 import tpe.microservicioadmin.entity.AdminEntity;
 import tpe.microservicioadmin.feignClients.UserFeignClient;
+import tpe.microservicioscooter.entities.ScooterEntity;
 
 import java.util.List;
 
@@ -121,6 +122,27 @@ public class AdminController {
     public ResponseEntity<Station> addStation(@RequestBody Station station) {
         ResponseEntity<Station> respuesta = stationFeignClient.save(station);
         return respuesta;
+    }
+
+    // Cambiar estado de cuenta
+    @PutMapping("/users/active/{id}")
+    public ResponseEntity<Void> setActive(@PathVariable Long id){
+        try {
+            ResponseEntity<Void> response= userFeignClient.inactive(id);
+            return response;
+        }catch (FeignException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    // Consulta los monopatines con más de X viajes en un cierto año.
+    @GetMapping("/scooters/trip/{year}")
+    public ResponseEntity<Scooter> getTrip(@PathVariable Integer year){
+        ResponseEntity<Scooter> scootersByYear = scooterFeignClient.getScootersByYear(year);
+        if (scootersByYear == null) {
+            return  ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(scootersByYear);
     }
 
 }

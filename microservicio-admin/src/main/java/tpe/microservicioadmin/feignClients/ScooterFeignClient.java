@@ -19,4 +19,7 @@ public interface ScooterFeignClient {
 
     @PutMapping("scooter/finishMaintenance/{id}")
     ResponseEntity<Scooter> finishMaintenance(@PathVariable("id")  Long id);
+
+    @GetMapping("/scooter/scooterByTrip/{year}")
+    ResponseEntity<Scooter> getScootersByYear(@PathVariable("year") Integer year);
 }

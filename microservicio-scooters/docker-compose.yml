@@ -6,4 +6,4 @@ services:
       MYSQL_ROOT_PASSWORD: "123"
       MYSQL_DATABASE: scooter
     ports:
-      - "3306:3306"
+      - "3311:3306"

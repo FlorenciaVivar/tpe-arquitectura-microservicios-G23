@@ -16,6 +16,7 @@ public class TripEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Integer year;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private double distanceTraveled;

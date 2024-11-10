@@ -42,5 +42,6 @@ public class AdminService {
         adminRepository.deleteById(id);
     }
 
+    public void inactive(Long id) { userFeignClient.inactive(id); }
 
 }
