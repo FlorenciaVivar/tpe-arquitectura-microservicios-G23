@@ -44,4 +44,6 @@ public class AdminService {
 
     public void inactive(Long id) { userFeignClient.inactive(id); }
 
+    public void updatePricesInDate(Integer normalPrice,Integer extraPrice,String date) {adminRepository.updatePrices(normalPrice,extraPrice);}
+
 }

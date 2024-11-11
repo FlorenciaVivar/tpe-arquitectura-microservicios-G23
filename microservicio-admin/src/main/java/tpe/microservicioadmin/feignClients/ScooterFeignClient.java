@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tpe.microservicioadmin.model.Scooter;
 
+import java.util.List;
+
 @FeignClient(name = "microservicio-scooter", url = "http://localhost:8001")
 public interface ScooterFeignClient {
 
@@ -21,5 +23,8 @@ public interface ScooterFeignClient {
     ResponseEntity<Scooter> finishMaintenance(@PathVariable("id")  Long id);
 
     @GetMapping("/scooter/scooterByTrip/{year}")
-    ResponseEntity<Scooter> getScootersByYear(@PathVariable("year") Integer year);
+    List<Scooter> getScootersByYear(@PathVariable("year") Integer year);
+
+    @GetMapping("")
+    List<Integer> getQuantityScooter();
 }

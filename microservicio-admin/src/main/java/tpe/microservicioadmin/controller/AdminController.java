@@ -12,7 +12,6 @@ import tpe.microservicioadmin.model.Station;
 import tpe.microservicioadmin.service.AdminService;
 import tpe.microservicioadmin.entity.AdminEntity;
 import tpe.microservicioadmin.feignClients.UserFeignClient;
-import tpe.microservicioscooter.entities.ScooterEntity;
 
 import java.util.List;
 
@@ -124,7 +123,7 @@ public class AdminController {
         return respuesta;
     }
 
-    // Cambiar estado de cuenta
+    // 3.b) Cambiar estado de cuenta
     @PutMapping("/users/active/{id}")
     public ResponseEntity<Void> setActive(@PathVariable Long id){
         try {
@@ -135,14 +134,41 @@ public class AdminController {
         }
     }
 
-    // Consulta los monopatines con más de X viajes en un cierto año.
+    // 3.c) Consulta los monopatines con más de X viajes en un cierto año.
     @GetMapping("/scooters/trip/{year}")
     public ResponseEntity<Scooter> getTrip(@PathVariable Integer year){
-        ResponseEntity<Scooter> scootersByYear = scooterFeignClient.getScootersByYear(year);
+        List<Scooter> scootersByYear = scooterFeignClient.getScootersByYear(year);
         if (scootersByYear == null) {
             return  ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(scootersByYear);
+        return ResponseEntity.ok((Scooter) scootersByYear);
     }
+
+    // 3.d) Como administrador quiero consultar el total facturado en un rango de meses de cierto año.
+    @GetMapping("/scooters/trip/{year}/{month1}/{month2}")
+    public Integer getTotalFacturado(@PathVariable Integer year, @PathVariable Integer month1, @PathVariable Integer month2){
+        Integer totalFacturadoByMonthRange = tripFeignClient.getTotalMontoByDate(year,month1,month2);
+        if (totalFacturadoByMonthRange == null) {
+            return  ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(totalFacturadoByMonthRange);
+    }
+
+    // 3.e) Como administrador quiero consultar la cantidad de monopatines actualmente en operación, versus la cantidad de monopatines actualmente en mantenimiento.
+    @GetMapping("/scooters")
+    public List<Integer> getQuantityScooter(){
+        List<Integer> quantityScooter = scooterFeignClient.getQuantityScooter();
+        if (quantityScooter == null) {
+            return  ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(quantityScooter);
+    }
+
+    // 3.f) Como administrador quiero hacer un ajuste de precios, y que a partir de cierta fecha el sistema habilite los nuevos precios.
+    @PutMapping("/updatePrice/{normalPrice}/{extraPrice}/{date}")
+    public void updatePrices(@PathVariable Integer normalPrice,@PathVariable Integer extraPrice,@PathVariable String date){
+        adminService.updatePricesInDate(normalPrice,extraPrice,date);
+    }
+
 
 }
