@@ -1,15 +1,18 @@
 package tpe.microservicioadmin.controller;
 
 import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tpe.microservicioadmin.dto.ReportTripDTO;
 import tpe.microservicioadmin.feignClients.ScooterFeignClient;
 import tpe.microservicioadmin.feignClients.StationFeignClient;
 import tpe.microservicioadmin.feignClients.TripFeignClient;
 import tpe.microservicioadmin.model.Scooter;
 import tpe.microservicioadmin.model.Station;
+import tpe.microservicioadmin.model.Trip;
 import tpe.microservicioadmin.service.AdminService;
 import tpe.microservicioadmin.entity.AdminEntity;
 import tpe.microservicioadmin.feignClients.UserFeignClient;
@@ -17,6 +20,7 @@ import tpe.microservicioadmin.feignClients.UserFeignClient;
 import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/admins")
 public class AdminController {
@@ -127,6 +131,16 @@ public class AdminController {
         return respuesta;
     }
 
+    //Generar reporte de uso de monopatines por kilómetros
+    @GetMapping("/trips/reportTripsByScooter")
+    public ResponseEntity<List<ReportTripDTO>> getReportTripsByScooter(){
+        List<ReportTripDTO> reportTripsByScooter = tripFeignClient.getReportTripsByScooter();
+        if (reportTripsByScooter == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(reportTripsByScooter);
+    }
+
     // 3.b) Cambiar estado de cuenta
     @PutMapping("/users/active/{id}")
     public ResponseEntity<Void> setActive(@PathVariable Long id){
@@ -149,22 +163,14 @@ public class AdminController {
     }
 
     // 3.d) Como administrador quiero consultar el total facturado en un rango de meses de cierto año.
-    @GetMapping("/scooters/trip/{year}/{month1}/{month2}")
-    public ResponseEntity<?> getTotalInvoiced(@PathVariable Integer year, @PathVariable Integer month1, @PathVariable Integer month2){
-        int totalInvoiced = 0;
-
-        if (month1 < 1 || month1 > 12 || month2 < 1 || month2 > 12 || month1 > month2) {
-            return ResponseEntity.badRequest().body("Rango de meses inválido");
+    @GetMapping("/trips/totalInvoiced")
+    public ResponseEntity<Integer> getTotalInvoiced(@RequestParam Integer year, @RequestParam Integer month1, @RequestParam Integer month2){
+        Integer totalInvoicedByMonth = tripFeignClient.getTotalInvoicedByDate(year, month1, month2);
+        if (totalInvoicedByMonth != null) {
+            return ResponseEntity.ok(totalInvoicedByMonth);
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        for (int month = month1; month <= month2; month++) {
-            Integer totalInvoicedByMonth = tripFeignClient.getTotalInvoicedByDate(year, month);
-            if (totalInvoicedByMonth == null) {
-                return ResponseEntity.notFound().build();
-            }
-            totalInvoiced += totalInvoicedByMonth;
-        }
-
-        return ResponseEntity.ok(totalInvoiced);
     }
 
     // 3.e) Como administrador quiero consultar la cantidad de monopatines actualmente en operación, versus la cantidad de monopatines actualmente en mantenimiento.
@@ -182,6 +188,4 @@ public class AdminController {
     public void updatePricesInDate(@PathVariable Long id, @PathVariable Integer normalPrice,@PathVariable Integer extraPrice,@RequestBody LocalDate date){
         adminService.updatePricesInDate(id, normalPrice,extraPrice,date);
     }
-
-
 }

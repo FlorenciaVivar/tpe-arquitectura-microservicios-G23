@@ -2,10 +2,12 @@ package tpe.microserviciotrip.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tpe.microserviciotrip.dto.ReportTripDTO;
 import tpe.microserviciotrip.entity.TripEntity;
 import tpe.microserviciotrip.repository.TripRepository;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TripService {
@@ -28,8 +30,8 @@ public class TripService {
         return tripRepository.save(t);
     }
 
-    public Integer calculateTotalInvoiced(Integer year, Integer month1, Integer month2) {
-        return tripRepository.calculateTotalInvoiced(year,month1,month2);    }
+    public Integer calculateTotalInvoiced(Integer year, Integer month1, Integer month2) {return tripRepository.calculateTotalInvoiced(year,month1,month2);    }
+
     public void deleteById(Long id) {
         tripRepository.deleteById(id);
     }
@@ -37,4 +39,7 @@ public class TripService {
     public boolean existsById(Long id) {
         return tripRepository.existsById(id);
     }
+
+    public List<ReportTripDTO> getReportKmByScooters() { return tripRepository.getTotalKilometersGroupedByScooterId(); }
+
 }

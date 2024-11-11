@@ -33,8 +33,6 @@ public class AdminService {
 
     public AdminEntity save(AdminEntity admin) {return  adminRepository.save(admin);}
 
-    public void delete(AdminEntity adm) { adminRepository.delete(adm);}
-
     public AdminEntity findById(Long id) {
         return adminRepository.findById(id).orElse(null);
     }

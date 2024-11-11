@@ -18,6 +18,7 @@ public class Trip {
     private double tripPrice;
     @Enumerated(EnumType.STRING)
     private TripStatus statusTrip;
+    private Double amount;
 
     public enum TripStatus {
         IN_PROGRESS,
