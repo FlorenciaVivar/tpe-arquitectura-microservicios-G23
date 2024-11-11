@@ -19,7 +19,6 @@ public class TripService {
 
     public TripEntity save(TripEntity T){ return tripRepository.save(T); }
 
-    public void delete(TripEntity trip){ tripRepository.delete(trip); }
 
     public TripEntity findById(Long id){
         return tripRepository.findById(id).orElse(null);
@@ -29,4 +28,13 @@ public class TripService {
         return tripRepository.save(t);
     }
 
+    public Integer calculateTotalInvoiced(Integer year, Integer month1, Integer month2) {
+        return tripRepository.calculateTotalInvoiced(year,month1,month2);    }
+    public void deleteById(Long id) {
+        tripRepository.deleteById(id);
+    }
+
+    public boolean existsById(Long id) {
+        return tripRepository.existsById(id);
+    }
 }

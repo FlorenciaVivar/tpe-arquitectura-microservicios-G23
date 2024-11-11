@@ -2,12 +2,14 @@ package tpe.microservicioadmin.service;
 
 import tpe.microservicioadmin.entity.AdminEntity;
 import tpe.microservicioadmin.feignClients.ScooterFeignClient;
+import tpe.microservicioadmin.feignClients.TripFeignClient;
 import tpe.microservicioadmin.model.Scooter;
 import tpe.microservicioadmin.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tpe.microservicioadmin.feignClients.UserFeignClient;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -21,6 +23,9 @@ public class AdminService {
 
     @Autowired
     ScooterFeignClient scooterFeignClient;
+
+    @Autowired
+    TripFeignClient tripFeignClient;
 
     public List<AdminEntity> getAll() {
         return adminRepository.findAll();
@@ -44,6 +49,6 @@ public class AdminService {
 
     public void inactive(Long id) { userFeignClient.inactive(id); }
 
-    public void updatePricesInDate(Integer normalPrice,Integer extraPrice,String date) {adminRepository.updatePrices(normalPrice,extraPrice);}
+    public void updatePricesInDate(Long id, Integer normalPrice, Integer extraPrice, LocalDate date) {adminRepository.updatePricesInDate(id, normalPrice,extraPrice,date);}
 
 }

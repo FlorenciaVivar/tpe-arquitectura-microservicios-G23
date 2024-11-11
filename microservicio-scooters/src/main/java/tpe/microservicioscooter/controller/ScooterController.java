@@ -3,9 +3,9 @@ package tpe.microservicioscooter.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tpe.microservicioscooter.dto.ScooterKilometerDTO;
 import tpe.microservicioscooter.entities.ScooterEntity;
 import tpe.microservicioscooter.service.ScooterService;
-
 import java.util.List;
 
 @RestController
@@ -84,9 +84,10 @@ public class ScooterController {
         return ResponseEntity.ok(scooters);
     }
 
-//    @GetMapping("/report/scooter-kilometers")
-//    public ResponseEntity<List<Map<String, Object>>> getScooterKilometers() {
-//        List<Map<String, Object>> scooterKilometers = scooterService.getScooterKilometers();
-//        return ResponseEntity.ok(scooterKilometers);
-//    }
+    //Generar reporte de uso de monopatines por kilómetros
+    @GetMapping("/report/kilometers")
+    public ResponseEntity<List<ScooterKilometerDTO>> getScooterKilometerReport() {
+        List<ScooterKilometerDTO> scooterKilometerDTOList = scooterService.calculateTotalKilometersForScooter();
+        return ResponseEntity.ok(scooterKilometerDTOList);
+    }
 }

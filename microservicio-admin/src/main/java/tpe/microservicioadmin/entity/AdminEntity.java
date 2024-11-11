@@ -16,7 +16,8 @@ public class AdminEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private Integer tarifaNormal;
-    private Integer tarifaExtra; // tarifa extra por reinicio de pausas extensas.
+    private String name;
+    private Integer normalPrice;
+    private Integer extraPrice; // tarifa extra por reinicio de pausas extensas.
+
 }

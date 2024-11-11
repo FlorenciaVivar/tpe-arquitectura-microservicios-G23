@@ -25,6 +25,6 @@ public interface ScooterFeignClient {
     @GetMapping("/scooter/scooterByTrip/{year}")
     List<Scooter> getScootersByYear(@PathVariable("year") Integer year);
 
-    @GetMapping("")
+    @GetMapping("/scooter/quantityScooter")
     List<Integer> getQuantityScooter();
 }

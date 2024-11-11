@@ -7,12 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tpe.microservicioadmin.feignClients.ScooterFeignClient;
 import tpe.microservicioadmin.feignClients.StationFeignClient;
+import tpe.microservicioadmin.feignClients.TripFeignClient;
 import tpe.microservicioadmin.model.Scooter;
 import tpe.microservicioadmin.model.Station;
 import tpe.microservicioadmin.service.AdminService;
 import tpe.microservicioadmin.entity.AdminEntity;
 import tpe.microservicioadmin.feignClients.UserFeignClient;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,6 +28,8 @@ public class AdminController {
     ScooterFeignClient scooterFeignClient;
     @Autowired
     StationFeignClient stationFeignClient;
+    @Autowired
+    TripFeignClient  tripFeignClient;
 
     @GetMapping("")
     public ResponseEntity<List<AdminEntity>> getAllAdmin() {
@@ -146,28 +150,37 @@ public class AdminController {
 
     // 3.d) Como administrador quiero consultar el total facturado en un rango de meses de cierto año.
     @GetMapping("/scooters/trip/{year}/{month1}/{month2}")
-    public Integer getTotalFacturado(@PathVariable Integer year, @PathVariable Integer month1, @PathVariable Integer month2){
-        Integer totalFacturadoByMonthRange = tripFeignClient.getTotalMontoByDate(year,month1,month2);
-        if (totalFacturadoByMonthRange == null) {
-            return  ResponseEntity.notFound().build();
+    public ResponseEntity<?> getTotalInvoiced(@PathVariable Integer year, @PathVariable Integer month1, @PathVariable Integer month2){
+        int totalInvoiced = 0;
+
+        if (month1 < 1 || month1 > 12 || month2 < 1 || month2 > 12 || month1 > month2) {
+            return ResponseEntity.badRequest().body("Rango de meses inválido");
         }
-        return ResponseEntity.ok(totalFacturadoByMonthRange);
+        for (int month = month1; month <= month2; month++) {
+            Integer totalInvoicedByMonth = tripFeignClient.getTotalInvoicedByDate(year, month);
+            if (totalInvoicedByMonth == null) {
+                return ResponseEntity.notFound().build();
+            }
+            totalInvoiced += totalInvoicedByMonth;
+        }
+
+        return ResponseEntity.ok(totalInvoiced);
     }
 
     // 3.e) Como administrador quiero consultar la cantidad de monopatines actualmente en operación, versus la cantidad de monopatines actualmente en mantenimiento.
     @GetMapping("/scooters")
-    public List<Integer> getQuantityScooter(){
+    public ResponseEntity<List<Integer>> getQuantityScooter(){
         List<Integer> quantityScooter = scooterFeignClient.getQuantityScooter();
         if (quantityScooter == null) {
-            return  ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(quantityScooter);
     }
 
     // 3.f) Como administrador quiero hacer un ajuste de precios, y que a partir de cierta fecha el sistema habilite los nuevos precios.
-    @PutMapping("/updatePrice/{normalPrice}/{extraPrice}/{date}")
-    public void updatePrices(@PathVariable Integer normalPrice,@PathVariable Integer extraPrice,@PathVariable String date){
-        adminService.updatePricesInDate(normalPrice,extraPrice,date);
+    @PutMapping("/updatePrice/{id}/{normalPrice}/{extraPrice}")
+    public void updatePricesInDate(@PathVariable Long id, @PathVariable Integer normalPrice,@PathVariable Integer extraPrice,@RequestBody LocalDate date){
+        adminService.updatePricesInDate(id, normalPrice,extraPrice,date);
     }
 
 

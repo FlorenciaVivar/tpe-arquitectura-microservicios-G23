@@ -2,15 +2,22 @@ package tpe.microservicioscooter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tpe.microservicioscooter.dto.ScooterKilometerDTO;
+import tpe.microservicioscooter.dto.TripDTO;
 import tpe.microservicioscooter.entities.ScooterEntity;
+import tpe.microservicioscooter.feignClients.TripFeignClient;
 import tpe.microservicioscooter.repository.ScooterRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ScooterService {
     @Autowired
     ScooterRepository scooterRepository;
+
+    @Autowired
+    TripFeignClient tripFeignClient;
 
     public List<ScooterEntity> getAll(){
         return scooterRepository.findAll();
@@ -69,8 +76,24 @@ public class ScooterService {
         return null;
     }
 
-//    public List<scooterKilometerDTO> getScooterKilometers() {
-//
-//        return scooterKilometers;
-//    }
+    public List<ScooterKilometerDTO> calculateTotalKilometersForScooter() {
+        List<ScooterEntity> scooters = scooterRepository.findAll();
+        List<ScooterKilometerDTO> scooterKilometerDTOList = new ArrayList<>();
+
+        for (ScooterEntity scooter : scooters) {
+            double totalKilometers = 0.0;
+            try {
+                List<TripDTO> trips = tripFeignClient.getTripsByScooterId(scooter.getId());
+
+                for (TripDTO trip : trips) {
+                    totalKilometers += trip.getDistanceTraveled();
+                }
+            } catch (Exception e) {
+                System.err.println("Error al obtener los viajes para el scooter con ID " + scooter.getId() + ": " + e.getMessage());
+            }
+            scooterKilometerDTOList.add(new ScooterKilometerDTO(scooter.getId().toString(), totalKilometers));
+        }
+
+        return scooterKilometerDTOList;
+    }
 }

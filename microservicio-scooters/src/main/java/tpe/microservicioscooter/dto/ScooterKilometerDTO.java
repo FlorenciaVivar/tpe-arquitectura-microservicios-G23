@@ -1,6 +1,12 @@
 package tpe.microservicioscooter.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class ScooterKilometerDTO {
+    // Getters y setters
     private String scooterId;
     private double kilometers;
 
@@ -9,20 +15,4 @@ public class ScooterKilometerDTO {
         this.kilometers = kilometers;
     }
 
-    // Getters y setters
-    public String getScooterId() {
-        return scooterId;
-    }
-
-    public void setScooterId(String scooterId) {
-        this.scooterId = scooterId;
-    }
-
-    public double getKilometers() {
-        return kilometers;
-    }
-
-    public void setKilometers(double kilometers) {
-        this.kilometers = kilometers;
-    }
 }

@@ -3,7 +3,7 @@ package tpe.microserviciouser1.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tpe.microservicioadmin.model.Scooter;
+//import tpe.microservicioadmin.model.Scooter;
 import tpe.microserviciouser1.entities.UserEntity;
 import tpe.microserviciouser1.service.UserService;
 
@@ -52,15 +52,15 @@ public class UserController {
     }
 
     // 3.g) Como usuario quiero lun listado de los monopatines cercanos a mi zona, para poder encontrar un monopatín cerca de mi ubicación.
-    @GetMapping("/{userId}/scooters")
-    public ResponseEntity<List<Scooter>> getScootersUser(@PathVariable("userId") Long userId){
-        List<Scooter> scooters= userService.getScootersByUserCercany(userId);
-        //userService o scooterFeignClient?
-        if(scooters == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(scooters);
-    }
+//    @GetMapping("/{userId}/scooters")
+//    public ResponseEntity<List<Scooter>> getScootersUser(@PathVariable("userId") Long userId){
+//        List<Scooter> scooters= userService.getScootersByUserCercany(userId);
+//        //userService o scooterFeignClient?
+//        if(scooters == null){
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(scooters);
+//    }
 
 
 }

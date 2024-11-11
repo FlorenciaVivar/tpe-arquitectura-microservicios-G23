@@ -1,20 +1,14 @@
-package tpe.microserviciotrip.entity;
+package tpe.microservicioadmin.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "trips")
-public class TripEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Getter
+@Setter
+public class Trip {
     private Long id;
     private Long scooterId;
     private Integer year;
@@ -24,12 +18,10 @@ public class TripEntity {
     private double tripPrice;
     @Enumerated(EnumType.STRING)
     private TripStatus statusTrip;
-    private Double amount  ;
 
     public enum TripStatus {
         IN_PROGRESS,
         COMPLETED,
         PAUSED
     }
-
 }
