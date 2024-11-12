@@ -22,6 +22,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
     private Boolean active;
     private String name;
     private String surname;
