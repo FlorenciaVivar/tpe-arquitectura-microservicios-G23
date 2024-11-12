@@ -45,8 +45,6 @@ public class AdminService {
         adminRepository.deleteById(id);
     }
 
-    public void inactive(Long id) { userFeignClient.inactive(id); }
-
     public void updatePricesInDate(Long id, Integer normalPrice, Integer extraPrice, LocalDate date) {adminRepository.updatePricesInDate(id, normalPrice,extraPrice,date);}
 
 }

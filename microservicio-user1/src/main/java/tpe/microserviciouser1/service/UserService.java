@@ -1,6 +1,7 @@
 package tpe.microserviciouser1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 //import tpe.microservicioadmin.model.Scooter;
 import tpe.microserviciouser1.entities.UserEntity;
@@ -26,5 +27,8 @@ public class UserService {
     public UserEntity findById(Long id){
         return userRepository.findById(id).orElse(null);
     }
+
+    public void updateInactive(Long id){ userRepository.updateInactive(id); }
+
 
 }

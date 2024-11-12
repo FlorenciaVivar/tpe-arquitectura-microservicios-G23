@@ -67,9 +67,7 @@ public class TripController {
 
 
     @GetMapping("/totalInvoiced")
-    public ResponseEntity<?> getTotalInvoicedByDate(@RequestParam("year") Integer year,
-                                                      @RequestParam("month1") Integer month1,
-                                                      @RequestParam("month2") Integer month2) {
+    public ResponseEntity<?> getTotalInvoicedByDate(@RequestParam("year") Integer year, @RequestParam("month1") Integer month1, @RequestParam("month2") Integer month2) {
         try {
             log.info("year: " + year + " month1: " + month1 + " month2: " + month2);
             Integer total = tripService.calculateTotalInvoiced(year, month1,month2);
