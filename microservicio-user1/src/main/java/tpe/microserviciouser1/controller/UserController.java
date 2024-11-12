@@ -1,6 +1,7 @@
 package tpe.microserviciouser1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 //import tpe.microservicioadmin.model.Scooter;
@@ -49,6 +50,18 @@ public class UserController {
         }
         userService.delete(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/active/{id}")
+    public ResponseEntity<?> inactive(@PathVariable Long id){
+        try {
+            System.out.println("aaaa user controller");
+            userService.updateInactive(id);
+            System.out.println("dddd user controller");
+            return ResponseEntity.ok("Usuario deshabilitado");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     // 3.g) Como usuario quiero lun listado de los monopatines cercanos a mi zona, para poder encontrar un monopatín cerca de mi ubicación.

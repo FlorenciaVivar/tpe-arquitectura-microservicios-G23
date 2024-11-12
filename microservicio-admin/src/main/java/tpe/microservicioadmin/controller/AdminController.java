@@ -143,12 +143,14 @@ public class AdminController {
 
     // 3.b) Cambiar estado de cuenta
     @PutMapping("/users/active/{id}")
-    public ResponseEntity<Void> setActive(@PathVariable Long id){
+    public ResponseEntity<String> setActive(@PathVariable Long id){
         try {
-            ResponseEntity<Void> response= userFeignClient.inactive(id);
-            return response;
-        }catch (FeignException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            System.out.println("antes");
+            userFeignClient.inactive(id);
+            System.out.println("despues");
+            return ResponseEntity.ok("Usuario deshabilitado");
+        } catch (FeignException e) {
+            return ResponseEntity.status(415).body("Error");
         }
     }
 

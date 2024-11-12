@@ -12,9 +12,8 @@ import java.util.List;
 public interface TripFeignClient {
 
     @GetMapping("/trips/totalInvoiced")
-    Integer getTotalInvoicedByDate(@RequestParam Integer year,
-                                   @RequestParam Integer month1,
-                                   @RequestParam Integer month2);
+    Integer getTotalInvoicedByDate(@RequestParam Integer year, @RequestParam Integer month1, @RequestParam Integer month2);
+
     @GetMapping("/trips/reportTripsByScooter")
     List<ReportTripDTO> getReportTripsByScooter();
 }

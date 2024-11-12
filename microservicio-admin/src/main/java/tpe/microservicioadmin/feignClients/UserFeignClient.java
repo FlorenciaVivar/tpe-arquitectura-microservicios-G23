@@ -12,7 +12,7 @@ public interface UserFeignClient {
     @DeleteMapping("users/{id}")
     void delete(@PathVariable Long id);
 
-    @PutMapping("users/putActive/{id}")
-    ResponseEntity<Void> inactive(@PathVariable Long id);
+    @PutMapping("/users/active/{id}")
+    void inactive(@PathVariable Long id);
 
 }
