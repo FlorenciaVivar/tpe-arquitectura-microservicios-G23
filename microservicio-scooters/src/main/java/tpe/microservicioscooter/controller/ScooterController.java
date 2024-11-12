@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tpe.microservicioscooter.dto.ScooterKilometerDTO;
+import tpe.microservicioscooter.dto.ScooterQuantityDTO;
 import tpe.microservicioscooter.entities.ScooterEntity;
 import tpe.microservicioscooter.service.ScooterService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/scooter")
+@RequestMapping("/scooters")
 public class ScooterController {
 
    @Autowired
@@ -89,5 +90,12 @@ public class ScooterController {
     public ResponseEntity<List<ScooterKilometerDTO>> getScooterKilometerReport() {
         List<ScooterKilometerDTO> scooterKilometerDTOList = scooterService.calculateTotalKilometersForScooter();
         return ResponseEntity.ok(scooterKilometerDTOList);
+    }
+
+    //Consultar cantidad de monopatines disponibles vs en mantenimiento
+    @GetMapping("/quantity")
+    public ResponseEntity<ScooterQuantityDTO> getScootersQuantity() {
+        ScooterQuantityDTO scootersQuantity = scooterService.calculateQuantityScooter();
+        return ResponseEntity.ok(scootersQuantity);
     }
 }

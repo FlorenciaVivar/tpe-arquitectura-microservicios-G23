@@ -2,7 +2,6 @@ package tpe.microservicioscooter.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import tpe.microservicioadmin.entity.AdminEntity;
 
 @Entity
 @Data

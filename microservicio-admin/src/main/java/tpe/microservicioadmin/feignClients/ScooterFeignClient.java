@@ -4,6 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tpe.microservicioadmin.model.Scooter;
+import tpe.microservicioscooter.dto.ScooterQuantityDTO;
 
 import java.util.List;
 
@@ -25,6 +26,6 @@ public interface ScooterFeignClient {
     @GetMapping("/scooter/scooterByTrip/{year}")
     List<Scooter> getScootersByYear(@PathVariable("year") Integer year);
 
-    @GetMapping("/scooter/quantityScooter")
-    List<Integer> getQuantityScooter();
+    @GetMapping("/scooters/quantity")
+    ScooterQuantityDTO getQuantityScooter();
 }

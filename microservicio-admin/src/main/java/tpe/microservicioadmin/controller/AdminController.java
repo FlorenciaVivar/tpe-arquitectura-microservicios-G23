@@ -16,6 +16,7 @@ import tpe.microservicioadmin.model.Trip;
 import tpe.microservicioadmin.service.AdminService;
 import tpe.microservicioadmin.entity.AdminEntity;
 import tpe.microservicioadmin.feignClients.UserFeignClient;
+import tpe.microservicioscooter.dto.ScooterQuantityDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -174,9 +175,9 @@ public class AdminController {
     }
 
     // 3.e) Como administrador quiero consultar la cantidad de monopatines actualmente en operación, versus la cantidad de monopatines actualmente en mantenimiento.
-    @GetMapping("/scooters")
-    public ResponseEntity<List<Integer>> getQuantityScooter(){
-        List<Integer> quantityScooter = scooterFeignClient.getQuantityScooter();
+    @GetMapping("/scooters/quantity")
+    public ResponseEntity<ScooterQuantityDTO> getQuantityScooter(){
+        ScooterQuantityDTO quantityScooter = scooterFeignClient.getQuantityScooter();
         if (quantityScooter == null) {
             return ResponseEntity.notFound().build();
         }

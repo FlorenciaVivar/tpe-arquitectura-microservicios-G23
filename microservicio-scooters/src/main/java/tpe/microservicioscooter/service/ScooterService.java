@@ -3,6 +3,7 @@ package tpe.microservicioscooter.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tpe.microservicioscooter.dto.ScooterKilometerDTO;
+import tpe.microservicioscooter.dto.ScooterQuantityDTO;
 import tpe.microservicioscooter.dto.TripDTO;
 import tpe.microservicioscooter.entities.ScooterEntity;
 import tpe.microservicioscooter.feignClients.TripFeignClient;
@@ -96,4 +97,11 @@ public class ScooterService {
 
         return scooterKilometerDTOList;
     }
+
+    public ScooterQuantityDTO calculateQuantityScooter() {
+        Integer scootersAvailable = scooterRepository.countScootersAvailable();
+        Integer scootersInMaintenance = scooterRepository.countScootersInMaintenance();
+        return new ScooterQuantityDTO(scootersAvailable, scootersInMaintenance);
+    }
+
 }
