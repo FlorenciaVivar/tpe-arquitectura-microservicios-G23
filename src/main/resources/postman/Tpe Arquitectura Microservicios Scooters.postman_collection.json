@@ -1,0 +1,685 @@
+{
+	"info": {
+		"_postman_id": "8b70a2e7-3fd9-4591-bcce-f946c51e47e0",
+		"name": "Tpe Arquitectura Microservicios Scooters",
+		"description": "Trabajo Práctico Especial: Aplicación para Monopatines Eléctricos 2024\n\nGrupo 23, Arquitecturas web , TUDAI, UNICEN.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24275319"
+	},
+	"item": [
+		{
+			"name": "Microservicio Trip",
+			"item": [
+				{
+					"name": "get all trips",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"trips"
+							]
+						},
+						"description": "Returns a list of all trips recorded in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "post trip",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startTime\": \"2024-11-03T10:00:00\",\r\n    \"endTime\": \"2024-11-03T10:30:00\",\r\n    \"distanceTraveled\": 5.2,\r\n    \"statusTrip\": \"IN_PROGRESS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"trips"
+							]
+						},
+						"description": "Register a new trip in the system. It requires information such as start time, end time, distance traveled, and trip status."
+					},
+					"response": []
+				},
+				{
+					"name": "get Trip By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/trips/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"trips",
+								"1"
+							]
+						},
+						"description": "Retrieves information about a specific trip using its ID."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8002/trips/totalInvoiced/2024/1/3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/trips/totalInvoiced?year=2024&month1=1&month2=12\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"trips",
+								"totalInvoiced"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2024"
+								},
+								{
+									"key": "month1",
+									"value": "1"
+								},
+								{
+									"key": "month2",
+									"value": "12\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete trip",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/trips/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"trips",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "report tripsByScooter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/trips/reportTripsByScooter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"trips",
+								"reportTripsByScooter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Microservicio Scooter",
+			"item": [
+				{
+					"name": "get all Scooter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8001/scooter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"scooter"
+							]
+						},
+						"description": "Returns a list of all scooters registered in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "scooters available",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8001/scooter/available",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"scooter",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ubicar scooter en parada \"x\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8001/scooter/stop/cordoba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"scooter",
+								"stop",
+								"cordoba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "report kilometers scooters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8001/scooter/report/kilometers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"scooter",
+								"report",
+								"kilometers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Microservicio User",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"María\",\r\n    \"surname\": \"Gómez\",\r\n    \"mail\": \"maria.gomez@example.com\",\r\n    \"telephone\": 987654321,\r\n    \"registrationDate\": \"2024-11-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8003/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Returns a list of all users registered in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "post users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Juan\",\r\n    \"surname\": \"Pérez\",\r\n    \"mail\": \"juan.perez@example.com\",\r\n    \"telephone\": 123456789,\r\n    \"registrationDate\": \"2024-11-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8003/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Allows you to create a new user in the system. You need to provide details such as first name, last name, email, phone number and registration date. Once created, the user will be stored in the database and assigned a unique ID."
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8003/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8003/users/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"users",
+								"4"
+							]
+						},
+						"description": "Removes a user from the database identified by their ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Microservicio Admin",
+			"item": [
+				{
+					"name": "getAll Admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins"
+							]
+						},
+						"description": "Returns a list of all administrators registered in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "get total invoiced",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins"
+							]
+						},
+						"description": "Returns a list of all administrators registered in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2024-11-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/admins/updatePrice/150/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"updatePrice",
+								"150",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post admin add scooter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"scooterStop\": \"tandilllllll\",\r\n  \"status\": \"available\",\r\n  \"available\": \"true\",\r\n  \"gps\": \"40.416775,-3.703790\",\r\n  \"timeInUse\": 120,\r\n  \"totalKilometers\": 150\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/admins/addScooter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"addScooter"
+							]
+						},
+						"description": "Allows you to register a new administrator in the database. Details such as name and assigned rates (normal and extra) must be specified."
+					},
+					"response": []
+				},
+				{
+					"name": "delete user desde adm",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/admins/users/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"users",
+								"5"
+							]
+						},
+						"description": "Allows an administrator to delete a specific user from the database, using the user's ID. This is an action controlled by the administration microservice for managing users."
+					},
+					"response": []
+				},
+				{
+					"name": "add admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \r\n        \"nombre\": \"Admin secundaria\",\r\n        \"tarifaNormal\": 100,\r\n        \"tarifaExtra\": 50\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete scooter desde admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/admins/scooter/deleteScooter/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"scooter",
+								"deleteScooter",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrar monopatín en mantenimiento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/admins/scooter/maintenance/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"scooter",
+								"maintenance",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "finish Maintenance",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/admins/scooter/finishMaintenance/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"scooter",
+								"finishMaintenance",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addStation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n {\r\n       \r\n        \"name\": \"palermo\",\r\n        \"location\": \"Downtown\",\r\n        \"active\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/admins/stations/addStation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"stations",
+								"addStation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reportTripsByScooter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/admins/trips/reportTripsByScooter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"admins",
+								"trips",
+								"reportTripsByScooter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Microservicio Station",
+			"item": [
+				{
+					"name": "get All stations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/stations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"stations"
+							]
+						},
+						"description": "Service that retrieves a complete list of all stations registered in the system. It returns basic information about each station, such as its name, location, and whether or not it is active."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Station by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/stations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"stations",
+								"1"
+							]
+						},
+						"description": "Service that allows you to obtain detailed information about a specific station through its ID. It returns details such as the name, location and activity status of the station queried."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
