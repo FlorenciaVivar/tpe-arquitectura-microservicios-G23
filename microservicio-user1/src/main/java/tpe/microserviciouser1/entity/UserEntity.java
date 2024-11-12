@@ -1,4 +1,4 @@
-package tpe.microserviciouser1.entities;
+package tpe.microserviciouser1.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

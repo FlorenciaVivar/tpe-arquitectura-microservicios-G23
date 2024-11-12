@@ -145,9 +145,7 @@ public class AdminController {
     @PutMapping("/users/active/{id}")
     public ResponseEntity<String> setActive(@PathVariable Long id){
         try {
-            System.out.println("antes");
             userFeignClient.inactive(id);
-            System.out.println("despues");
             return ResponseEntity.ok("Usuario deshabilitado");
         } catch (FeignException e) {
             return ResponseEntity.status(415).body("Error");
