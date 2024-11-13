@@ -33,11 +33,13 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
 
 ---
 
-# Endpoints
+# Microservicios, entidades, endpoints
 
 ## TRIP
 
 **Descripción:** La entidad `Trip` representa los viajes realizados con monopatines, permitiendo su creación, consulta, actualización y eliminación.
+
+<img src="./entidadesImg/trip.png" alt="trip" style="width: 400px;"/>
 
 1. **Obtener todos los viajes**
    - **Ruta:** `http://localhost:8002/trips`
@@ -65,6 +67,8 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
 ## SCOOTER
 
 **Descripción:** La entidad `Scooter` administra los monopatines, su disponibilidad y su estado de mantenimiento.
+
+<img src="./entidadesImg/scooter.png" alt="scooter" style="width: 400px;"/>
 
 1. **Obtener todos los monopatines**
    - **Ruta:** `http://localhost:8001/scooters`
@@ -110,6 +114,8 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
 
 **Descripción:** La entidad `Station` permite gestionar las estaciones donde se encuentran los monopatines.
 
+<img src="./entidadesImg/station.png" alt="station" style="width: 400px;"/>
+
 1. **Obtener todos los admins**
    - **Ruta:** `http://localhost:8004/stations`
    - **Método HTTP:** `GET`
@@ -133,6 +139,8 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
 ## USER
 
 **Descripción:** La entidad `User` gestiona a los usuarios del servicio, incluyendo datos personales y el estado de su cuenta.
+
+<img src="./entidadesImg/user.png" alt="user" style="width: 400px;"/>
 
 1. **Obtener todos los usuarios**
    - **Ruta:** `http://localhost:8003/users`
@@ -168,6 +176,8 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
 ## ADMIN
 
 **Descripción:** La entidad `Admin` permite gestionar la administración de los monopatines, usuarios y estaciones.
+
+<img src="./entidadesImg/admin.png" alt="admin" style="width: 400px;"/>
 
 1. **Obtener todos los admins**
    - **Ruta:** `http://localhost:8004/admins`
