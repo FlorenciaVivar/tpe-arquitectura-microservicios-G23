@@ -2,18 +2,13 @@ package tpe.microserviciotrip.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import tpe.microserviciotrip.dto.ReportTripDTO;
 import tpe.microserviciotrip.entity.TripEntity;
 import tpe.microserviciotrip.service.TripService;
-
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Slf4j
@@ -22,8 +17,6 @@ public class TripController {
 
     @Autowired
     TripService tripService;
-
-
 
     @GetMapping("")
     public ResponseEntity<List<TripEntity>> getAllTrips() {
@@ -43,11 +36,12 @@ public class TripController {
         return ResponseEntity.ok(t);
     }
 
-    @PostMapping("")
+    @PostMapping("/addTrip")
     public ResponseEntity<TripEntity> save(@RequestBody TripEntity trip) {
         TripEntity saveTrip = tripService.save(trip);
         return ResponseEntity.ok(saveTrip);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTripById(@PathVariable("id") Long id) {
         try {
@@ -65,7 +59,6 @@ public class TripController {
         }
     }
 
-
     @GetMapping("/totalInvoiced")
     public ResponseEntity<?> getTotalInvoicedByDate(@RequestParam("year") Integer year, @RequestParam("month1") Integer month1, @RequestParam("month2") Integer month2) {
         try {
@@ -76,6 +69,7 @@ public class TripController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     @GetMapping("/reportTripsByScooter")
     public ResponseEntity<List<ReportTripDTO>> getReportKmByScooters() {
         List<ReportTripDTO> scooterKilometersMap = tripService.getReportKmByScooters();
@@ -85,6 +79,7 @@ public class TripController {
             return ResponseEntity.notFound().build();
         }
     }
+
 //    @GetMapping("/ping")
 //    public ResponseEntity<String> ping() {
 //        return ResponseEntity.ok("Servidor en funcionamiento");

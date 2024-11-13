@@ -11,20 +11,20 @@ import java.util.List;
 @FeignClient(name = "microservicio-scooter", url = "http://localhost:8001")
 public interface ScooterFeignClient {
 
-    @PostMapping("/scooter/addScooter")
+    @PostMapping("/scooters/addScooter")
     ResponseEntity<Scooter> save(@RequestBody Scooter scooter);
 
-    @DeleteMapping("/scooter/{id}")
+    @DeleteMapping("/scooters/{id}")
     void delete(@PathVariable Long id);
 
-    @PutMapping("/scooter/maintenance/{id}")
+    @PutMapping("/scooters/maintenance/{id}")
     ResponseEntity<Scooter> registerMaintenance(@PathVariable("id") Long id);
 
-    @PutMapping("scooter/finishMaintenance/{id}")
+    @PutMapping("scooters/finishMaintenance/{id}")
     ResponseEntity<Scooter> finishMaintenance(@PathVariable("id")  Long id);
 
-    @GetMapping("/scooter/scooterByTrip/{year}")
-    List<Scooter> getScootersByYear(@PathVariable("year") Integer year);
+    @GetMapping("/scooters/scooterByTrip/{year}")
+    List<Scooter> getScootersByYear(@PathVariable("tripsQuantity") Integer tripsQuantity, @PathVariable("year") Integer year);
 
     @GetMapping("/scooters/quantity")
     ScooterQuantityDTO getQuantityScooter();

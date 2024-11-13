@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>tpe</groupId>
-    <artifactId>microservicio-user1</artifactId>
+    <artifactId>microservicio-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>microservicio-user1</name>
     <description>microservicio-user1</description>

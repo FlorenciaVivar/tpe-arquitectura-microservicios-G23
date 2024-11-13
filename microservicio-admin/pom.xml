@@ -58,13 +58,13 @@
 		</dependency>
 		<dependency>
 			<groupId>tpe</groupId>
-			<artifactId>microservicio-user1</artifactId>
+			<artifactId>microservicio-user</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
         <dependency>
             <groupId>tpe</groupId>
-            <artifactId>microservicio-scooters</artifactId>
+            <artifactId>microservicio-scooter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

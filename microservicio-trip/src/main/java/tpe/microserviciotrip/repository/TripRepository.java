@@ -7,8 +7,6 @@ import tpe.microserviciotrip.dto.ReportTripDTO;
 import tpe.microserviciotrip.entity.TripEntity;
 
 import java.util.List;
-import java.util.Map;
-
 
 @Repository
 public interface TripRepository extends JpaRepository<TripEntity,Long> {

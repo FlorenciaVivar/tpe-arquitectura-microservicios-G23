@@ -9,7 +9,7 @@
 	</parent>
 
 	<groupId>tpe</groupId>
-	<artifactId>microservicio-scooters</artifactId>
+	<artifactId>microservicio-scooter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>microservicio-scooters</name>
 	<description>microservicio-scooters</description>

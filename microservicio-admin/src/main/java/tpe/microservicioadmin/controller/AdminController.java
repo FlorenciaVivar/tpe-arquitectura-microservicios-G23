@@ -12,12 +12,10 @@ import tpe.microservicioadmin.feignClients.StationFeignClient;
 import tpe.microservicioadmin.feignClients.TripFeignClient;
 import tpe.microservicioadmin.model.Scooter;
 import tpe.microservicioadmin.model.Station;
-import tpe.microservicioadmin.model.Trip;
 import tpe.microservicioadmin.service.AdminService;
 import tpe.microservicioadmin.entity.AdminEntity;
 import tpe.microservicioadmin.feignClients.UserFeignClient;
 import tpe.microservicioscooter.dto.ScooterQuantityDTO;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -54,17 +52,18 @@ public class AdminController {
         return ResponseEntity.ok(adm);
     }
 
-    @PostMapping("")
+    @PostMapping("/addAdmin")
     public ResponseEntity<AdminEntity> save(@RequestBody AdminEntity adm) {
         AdminEntity savedAdm = adminService.save(adm);
         return ResponseEntity.ok(savedAdm);
     }
-    //Eliminar un admin
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdmin(@PathVariable("id") Long id) {
         adminService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
     //Eliminar un usario desde admin
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
@@ -75,12 +74,14 @@ public class AdminController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     // Agregar monopatín
     @PostMapping("/scooter/addScooter")
     public ResponseEntity<Scooter> addScooter(@RequestBody Scooter scooter) {
         ResponseEntity<Scooter> respuesta = scooterFeignClient.save(scooter);
         return respuesta;
     }
+
     //eliminar un monopatin
     @DeleteMapping("/scooter/deleteScooter/{id}")
     public ResponseEntity<Void> deleteScooter(@PathVariable Long id) {
@@ -103,7 +104,7 @@ public class AdminController {
         }
     }
 
-    //registrar fin del mantenimietno del monopatin
+    //Registrar fin del mantenimietno del monopatin
     @PutMapping("/scooter/finishMaintenance/{id}")
     public ResponseEntity<Scooter> finishMaintenance(@PathVariable Long id) {
         try {
@@ -114,7 +115,7 @@ public class AdminController {
         }
     }
 
-    //eliminar un parada
+    //Eliminar un parada
     @DeleteMapping("/stations/deleteStation/{id}")
     public ResponseEntity<Void> deleteStation(@PathVariable Long id) {
         try {
@@ -125,7 +126,7 @@ public class AdminController {
         }
     }
 
-    // Agregar parada
+    //Agregar parada
     @PostMapping("/stations/addStation")
     public ResponseEntity<Station> addStation(@RequestBody Station station) {
         ResponseEntity<Station> respuesta = stationFeignClient.save(station);
@@ -154,9 +155,10 @@ public class AdminController {
     }
 
     // 3.c) Consulta los monopatines con más de X viajes en un cierto año.
-    @GetMapping("/scooters/trip/{year}")
-    public ResponseEntity<Scooter> getTrip(@PathVariable Integer year){
-        List<Scooter> scootersByYear = scooterFeignClient.getScootersByYear(year);
+    // FALTA IMPLEMENTAR
+    @GetMapping("/scooters/trip/{tripsQuantity}/year/{year}")
+    public ResponseEntity<Scooter> getTrip(@PathVariable Integer tripsQuantity, @PathVariable Integer year){
+        List<Scooter> scootersByYear = scooterFeignClient.getScootersByYear(tripsQuantity,year);
         if (scootersByYear == null) {
             return  ResponseEntity.notFound().build();
         }
@@ -185,7 +187,7 @@ public class AdminController {
     }
 
     // 3.f) Como administrador quiero hacer un ajuste de precios, y que a partir de cierta fecha el sistema habilite los nuevos precios.
-    @PutMapping("/updatePrice/{id}/{normalPrice}/{extraPrice}")
+    @PutMapping("/pricing/{id}/{normalPrice}/{extraPrice}")
     public void updatePricesInDate(@PathVariable Long id, @PathVariable Integer normalPrice,@PathVariable Integer extraPrice,@RequestBody LocalDate date){
         LocalDate today = LocalDate.now();
         if (date.equals(today)) {

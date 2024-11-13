@@ -35,7 +35,6 @@ public class ScooterController {
         return ResponseEntity.ok(scooter);
     }
 
-    //obtener todos los monopatines disponibles si esta vacio retorna 204 no content
     @GetMapping("/available")
     public ResponseEntity<List<ScooterEntity>> getAvailableScooters() {
         List<ScooterEntity> scooters = scooterService.getAvailableScooters();
@@ -44,7 +43,7 @@ public class ScooterController {
         }
         return ResponseEntity.ok(scooters);
     }
-    //Quitar monopatín
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteScooter(@PathVariable Long id) {
         scooterService.delete(id);
@@ -57,7 +56,7 @@ public class ScooterController {
         return ResponseEntity.ok(savedScooter);
     }
 
-    //Registrar monopatín en mantenimiento respuesta 200.ok , si no existe monopatin respuesta 404 notfound
+    //Registrar monopatín en mantenimiento, si no existe monopatin respuesta 404 not found
     @PutMapping("/maintenance/{id}")
     public ResponseEntity<ScooterEntity> registerMaintenance(@PathVariable Long id) {
         ScooterEntity scooter = scooterService.setScooterInMaintenance(id);
@@ -66,7 +65,8 @@ public class ScooterController {
         }
         return ResponseEntity.ok(scooter);
     }
-    //Registrar fin de mantenimiento de monopatín. Respuesta 200.ok , si no existe monopatin respuesta 404 notfound
+
+    //Registrar fin de mantenimiento de monopatín, si no existe monopatin respuesta 404 not found
     @PutMapping("/finishMaintenance/{id}")
     public ResponseEntity<ScooterEntity> finishMaintenance(@PathVariable Long id) {
         ScooterEntity scooter = scooterService.finishMaintenance(id);
@@ -75,7 +75,8 @@ public class ScooterController {
         }
         return ResponseEntity.ok(scooter);
     }
-    //Ubicar monopatínes en parada (opcional). Respuesta: 200.ok , si no existe: 204 No Content.
+
+    //Ubicar monopatínes en parada, si no existe respuesta 204 No Content
     @GetMapping("/stop/{scooterStop}")
     public ResponseEntity<List<ScooterEntity>> getScootersAtStop(@PathVariable String scooterStop) {
         List<ScooterEntity> scooters = scooterService.getScootersByStop(scooterStop);

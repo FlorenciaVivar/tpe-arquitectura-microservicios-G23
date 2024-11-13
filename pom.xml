@@ -17,9 +17,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>microservicio-scooters</module>
+        <module>microservicio-scooter</module>
         <module>microservicio-trip</module>
-        <module>microservicio-user1</module>
+        <module>microservicio-user</module>
         <module>microservicio-admin</module>
         <module>microservicio-station</module>
     </modules>
