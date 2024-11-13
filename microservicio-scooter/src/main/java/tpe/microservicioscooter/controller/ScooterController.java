@@ -99,4 +99,9 @@ public class ScooterController {
         ScooterQuantityDTO scootersQuantity = scooterService.calculateQuantityScooter();
         return ResponseEntity.ok(scootersQuantity);
     }
+
+    @PostMapping("/by-ids")
+    public List<ScooterEntity> getScootersByIds(@RequestBody List<Long> scooterIds) {
+        return scooterService.findAllById(scooterIds);
+    }
 }

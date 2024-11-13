@@ -155,16 +155,16 @@ public class AdminController {
     }
 
     // 3.c) Consulta los monopatines con más de X viajes en un cierto año.
-    // FALTA IMPLEMENTAR
-    @GetMapping("/scooters/trip/{tripsQuantity}/year/{year}")
-    public ResponseEntity<Scooter> getTrip(@PathVariable Integer tripsQuantity, @PathVariable Integer year){
-        List<Scooter> scootersByYear = scooterFeignClient.getScootersByYear(tripsQuantity,year);
-        if (scootersByYear == null) {
-            return  ResponseEntity.notFound().build();
+    @GetMapping("/scooters/mostTrips")
+    public ResponseEntity<List<Scooter>> getScootersWithMostTrips(@RequestParam("year") int year, @RequestParam("minTrips") int minTrips) {
+        List<Long> scooterIds = tripFeignClient.getScooterIdsWithMinTripsInYear(year, minTrips);
+        if (scooterIds.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok((Scooter) scootersByYear);
-    }
 
+        List<Scooter> scooters = scooterFeignClient.getScootersByIds(scooterIds);
+        return ResponseEntity.ok(scooters);
+    }
     // 3.d) Como administrador quiero consultar el total facturado en un rango de meses de cierto año.
     @GetMapping("/trips/totalInvoiced")
     public ResponseEntity<Integer> getTotalInvoiced(@RequestParam Integer year, @RequestParam Integer month1, @RequestParam Integer month2){
@@ -198,4 +198,6 @@ public class AdminController {
             adminService.updatePricesInDate(id, normalPrice, extraPrice);
         }
     }
+
+
 }

@@ -104,4 +104,8 @@ public class ScooterService {
         return new ScooterQuantityDTO(scootersAvailable, scootersInMaintenance);
     }
 
+    public List<ScooterEntity> findAllById(List<Long> scooterIds) {
+        return scooterRepository.findAllById(scooterIds);
+    }
+
 }

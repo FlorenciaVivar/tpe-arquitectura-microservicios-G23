@@ -7,7 +7,6 @@ import tpe.microserviciotrip.entity.TripEntity;
 import tpe.microserviciotrip.repository.TripRepository;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class TripService {
@@ -42,4 +41,5 @@ public class TripService {
 
     public List<ReportTripDTO> getReportKmByScooters() { return tripRepository.getTotalKilometersGroupedByScooterId(); }
 
+    public List<Object[]> getScooterIdsWithMinTripsInYear(int year, long minTrips) {return tripRepository.findScootersWithHighTripCountInYear(year, minTrips);}
 }

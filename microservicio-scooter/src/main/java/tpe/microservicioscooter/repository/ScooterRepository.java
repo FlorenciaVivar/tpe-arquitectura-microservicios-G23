@@ -3,6 +3,7 @@ package tpe.microservicioscooter.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tpe.microservicioscooter.dto.ScooterQuantityDTO;
 import tpe.microservicioscooter.entities.ScooterEntity;
@@ -26,5 +27,8 @@ public interface ScooterRepository extends JpaRepository<ScooterEntity,Long> {
 
     @Query("SELECT COUNT(s) FROM ScooterEntity s WHERE s.available = false")
     int countScootersInMaintenance();
+
+    @Query("SELECT s FROM ScooterEntity s WHERE s.totalKilometers > :km")
+    List<ScooterEntity> findAllWithHighTripCountInYear(@Param("km") Integer tripsQuantity,@Param("year") Integer year);
 
 }
