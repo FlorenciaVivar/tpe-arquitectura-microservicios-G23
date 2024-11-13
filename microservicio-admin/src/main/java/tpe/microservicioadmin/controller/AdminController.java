@@ -187,6 +187,13 @@ public class AdminController {
     // 3.f) Como administrador quiero hacer un ajuste de precios, y que a partir de cierta fecha el sistema habilite los nuevos precios.
     @PutMapping("/updatePrice/{id}/{normalPrice}/{extraPrice}")
     public void updatePricesInDate(@PathVariable Long id, @PathVariable Integer normalPrice,@PathVariable Integer extraPrice,@RequestBody LocalDate date){
-        adminService.updatePricesInDate(id, normalPrice,extraPrice,date);
+        LocalDate today = LocalDate.now();
+        if (date.equals(today)) {
+            // Si la fecha es hoy, actualizar los precios
+            adminService.updatePricesInDate(id, normalPrice, extraPrice);
+        } else {
+            // Si la fecha no es hoy, se debe actualizar los precios recién en esa fecha. Hacer un Scheduler??
+            adminService.updatePricesInDate(id, normalPrice, extraPrice);
+        }
     }
 }

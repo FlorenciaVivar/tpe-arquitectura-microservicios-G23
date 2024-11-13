@@ -45,6 +45,6 @@ public class AdminService {
         adminRepository.deleteById(id);
     }
 
-    public void updatePricesInDate(Long id, Integer normalPrice, Integer extraPrice, LocalDate date) {adminRepository.updatePricesInDate(id, normalPrice,extraPrice,date);}
+    public void updatePricesInDate(Long id, Integer normalPrice, Integer extraPrice) {adminRepository.updatePricesInDate(id, normalPrice,extraPrice);}
 
 }
