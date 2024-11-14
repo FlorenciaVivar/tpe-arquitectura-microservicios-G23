@@ -1,10 +1,10 @@
-package tpe.microserviciouser1.service;
+package tpe.microserviciouser.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //import tpe.microservicioadmin.model.Scooter;
-import tpe.microserviciouser1.entity.UserEntity;
-import tpe.microserviciouser1.repository.UserRepository;
+import tpe.microserviciouser.entity.UserEntity;
+import tpe.microserviciouser.repository.UserRepository;
 
 import java.util.List;
 @Service

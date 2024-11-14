@@ -9,6 +9,5 @@ public class ReportTripDTO {
         private Long scooterId;
         private Double totalDistance;
 
-        // Constructor, getters y setters
     }
 

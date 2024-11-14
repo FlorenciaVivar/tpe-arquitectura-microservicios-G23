@@ -12,7 +12,6 @@ public class StationService {
     @Autowired
     StationRepository stationRepository;
 
-    // Agregar una nueva parada TAMBIEN LO DEBE HACE EL ADMIN
     public StationEntity addStation(StationEntity station) { return stationRepository.save(station); }
 
     public StationEntity findById(Long id){

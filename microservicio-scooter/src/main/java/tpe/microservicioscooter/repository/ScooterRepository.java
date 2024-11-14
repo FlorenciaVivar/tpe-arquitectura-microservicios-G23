@@ -28,7 +28,7 @@ public interface ScooterRepository extends JpaRepository<ScooterEntity,Long> {
     @Query("SELECT COUNT(s) FROM ScooterEntity s WHERE s.available = false")
     int countScootersInMaintenance();
 
-    @Query("SELECT s FROM ScooterEntity s WHERE s.totalKilometers > :km")
-    List<ScooterEntity> findAllWithHighTripCountInYear(@Param("km") Integer tripsQuantity,@Param("year") Integer year);
+//    @Query("SELECT s FROM ScooterEntity s WHERE s.totalKilometers > :km")
+//    List<ScooterEntity> findAllWithHighTripCountInYear(@Param("km") Integer tripsQuantity,@Param("year") Integer year);
 
 }

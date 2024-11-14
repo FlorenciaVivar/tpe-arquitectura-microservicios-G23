@@ -17,11 +17,9 @@ public class StationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-
     private String name;
     @Column(name = "location", nullable = false)
     private String location;
-
     private boolean isActive;
 
 }

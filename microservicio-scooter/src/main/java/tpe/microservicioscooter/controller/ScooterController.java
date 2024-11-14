@@ -100,8 +100,8 @@ public class ScooterController {
         return ResponseEntity.ok(scootersQuantity);
     }
 
-    @PostMapping("/by-ids")
-    public List<ScooterEntity> getScootersByIds(@RequestBody List<Long> scooterIds) {
-        return scooterService.findAllById(scooterIds);
-    }
+//    @PostMapping("/by-ids")
+//    public List<ScooterEntity> getScootersByIds(@RequestBody List<Long> scooterIds) {
+//        return scooterService.findAllById(scooterIds);
+//    }
 }

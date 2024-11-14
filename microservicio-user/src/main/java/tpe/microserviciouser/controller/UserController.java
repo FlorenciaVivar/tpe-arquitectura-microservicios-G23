@@ -1,10 +1,10 @@
-package tpe.microserviciouser1.controller;
+package tpe.microserviciouser.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tpe.microserviciouser1.entity.UserEntity;
-import tpe.microserviciouser1.service.UserService;
+import tpe.microserviciouser.entity.UserEntity;
+import tpe.microserviciouser.service.UserService;
 
 import java.util.List;
 
