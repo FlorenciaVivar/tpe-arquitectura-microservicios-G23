@@ -7,8 +7,9 @@ import tpe.microservicioadmin.dto.ReportTripDTO;
 import tpe.microservicioadmin.model.Trip;
 
 import java.util.List;
-
-@FeignClient(name = "microservicio-trip", url = "http://localhost:8002")
+//Segun los profesores sacar la url hace que ande el GateAway
+//url comentada  url = "http://localhost:8002"
+@FeignClient(name = "microservicio-trip")
 public interface TripFeignClient {
 
     @GetMapping("/trips/totalInvoiced")

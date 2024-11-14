@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: gateway-s
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: admins
+          uri: http://localhost:8003
+          predicates:
+            - Path=/admins/**
+        - id: users
+          uri: http://localhost:8002
+          predicates:
+            - Path=/users/**
+        - id: trips
+          uri: http://localhost:8004
+          predicates:
+            - Path=/trips/**
+        - id: scooters
+          uri: http://localhost:8001
+          predicates:
+            - Path=/scooters/**  # Cambié la ruta para evitar conflicto con '/admins/**'
+        - id: stations
+          uri: http://localhost:8005
+          predicates:
+            - Path=/stations/**  # Asegúrate de que el servicio de estaciones tenga esta ruta
+
+  
+
+

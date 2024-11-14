@@ -16,6 +16,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>config-service</module>
+        <module>gateway-s</module>
+        <module>eureka-server</module>
         <module>microservicio-scooter</module>
         <module>microservicio-trip</module>
         <module>microservicio-user</module>
