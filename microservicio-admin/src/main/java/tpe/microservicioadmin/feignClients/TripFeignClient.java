@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tpe.microservicioadmin.dto.ReportTripDTO;
-import tpe.microservicioadmin.model.Trip;
+import tpe.microservicioadmin.dto.ScooterMinTripsDTO;
 
 import java.util.List;
 
@@ -18,5 +18,5 @@ public interface TripFeignClient {
     List<ReportTripDTO> getReportTripsByScooter();
 
     @GetMapping("/trips/scootersWithMinTrips")
-    List<?> getScooterIdsWithMinTripsInYear(@RequestParam("year") int year, @RequestParam("minTrips") int minTrips);
+    List<ScooterMinTripsDTO> getScooterIdsWithMinTripsInYear(@RequestParam int year, @RequestParam int minTrips);
 }

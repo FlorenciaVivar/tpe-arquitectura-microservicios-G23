@@ -100,11 +100,6 @@ public class ScooterController {
         return ResponseEntity.ok(scootersQuantity);
     }
 
-    @PostMapping("/by-ids")
-    public List<ScooterEntity> getScootersByIds(@RequestParam List<Long> scooterIds) {
-        return scooterService.findAllById(scooterIds);
-    }
-
     @GetMapping("/withMinTrips")
     public List<Long> getScootersWithMinTrips(@RequestParam Integer year, @RequestParam Integer minTrips) {
         return scooterService.getScootersWithMinTripsInYear(year, minTrips);
