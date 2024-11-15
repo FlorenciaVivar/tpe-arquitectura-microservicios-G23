@@ -14,26 +14,26 @@ spring:
           enabled: true
       routes:
         - id: admins
-          uri: http://localhost:8003
+          uri: lb://localhost:8003
           predicates:
             - Path=/admins/**
         - id: users
-          uri: http://localhost:8002
+          uri: lb://localhost:8002
           predicates:
             - Path=/users/**
         - id: trips
-          uri: http://localhost:8004
+          uri: lb://localhost:8004
           predicates:
             - Path=/trips/**
         - id: scooters
-          uri: http://localhost:8001
+          uri: lb://localhost:8001
           predicates:
-            - Path=/scooters/**  # Cambié la ruta para evitar conflicto con '/admins/**'
+            - Path=/scooters/**
         - id: stations
-          uri: http://localhost:8005
+          uri: lb://localhost:8005
           predicates:
-            - Path=/stations/**  # Asegúrate de que el servicio de estaciones tenga esta ruta
+            - Path=/stations/**
 
-  
+
 
 
