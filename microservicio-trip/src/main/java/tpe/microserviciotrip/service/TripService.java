@@ -3,6 +3,7 @@ package tpe.microserviciotrip.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tpe.microserviciotrip.dto.ReportTripDTO;
+import tpe.microserviciotrip.dto.ScooterMinTripsDTO;
 import tpe.microserviciotrip.entity.TripEntity;
 import tpe.microserviciotrip.repository.TripRepository;
 
@@ -41,5 +42,7 @@ public class TripService {
 
     public List<ReportTripDTO> getReportKmByScooters() { return tripRepository.getTotalKilometersGroupedByScooterId(); }
 
-    public List<Object[]> getScooterIdsWithMinTripsInYear(int year, long minTrips) {return tripRepository.findScootersWithHighTripCountInYear(year, minTrips);}
+//    public List<Object[]> getScooterIdsWithMinTripsInYear(int year, long minTrips) {return tripRepository.findScootersWithHighTripCountInYear(year, minTrips);}
+
+    public List<ScooterMinTripsDTO> findScootersWithMinTripsInYear(Integer year, Integer minTrips) {return tripRepository.findScootersWithHighTripCountInYear(year, minTrips) ;  }
 }

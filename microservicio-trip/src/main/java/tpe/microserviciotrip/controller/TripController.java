@@ -79,6 +79,11 @@ public class TripController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/scootersWithMinTrips")
+    public List<?> getScootersWithMinTrips(@RequestParam Integer year, @RequestParam Integer minTrips) {
+        return tripService.findScootersWithMinTripsInYear(year, minTrips);
+    }
+
 
 //    @GetMapping("/ping")
 //    public ResponseEntity<String> ping() {

@@ -108,4 +108,7 @@ public class ScooterService {
         return scooterRepository.findAllById(scooterIds);
     }
 
+    public List<Long> getScootersWithMinTripsInYear(Integer year, Integer minTrips) {
+        return tripFeignClient.getScootersWithMinTrips(year, minTrips);
+    }
 }

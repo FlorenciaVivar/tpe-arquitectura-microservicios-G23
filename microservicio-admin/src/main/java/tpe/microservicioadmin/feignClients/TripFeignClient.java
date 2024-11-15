@@ -18,5 +18,5 @@ public interface TripFeignClient {
     List<ReportTripDTO> getReportTripsByScooter();
 
     @GetMapping("/trips/scootersWithMinTrips")
-    List<Long> getScooterIdsWithMinTripsInYear(@RequestParam int year, @RequestParam int minTrips);
+    List<?> getScooterIdsWithMinTripsInYear(@RequestParam("year") int year, @RequestParam("minTrips") int minTrips);
 }

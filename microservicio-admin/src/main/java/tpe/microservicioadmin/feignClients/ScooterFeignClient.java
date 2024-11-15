@@ -30,5 +30,5 @@ public interface ScooterFeignClient {
     ScooterQuantityDTO getQuantityScooter();
 
     @PostMapping("/scooters/byIds")
-    List<Scooter> getScootersByIds(@RequestBody List<Long> scooterIds);
+    List<Scooter> getScootersByIds(@RequestParam("ids") List<Long> scooterIds);
 }
