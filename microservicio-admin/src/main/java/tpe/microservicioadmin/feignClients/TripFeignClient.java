@@ -4,12 +4,11 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tpe.microservicioadmin.dto.ReportTripDTO;
-import tpe.microservicioadmin.model.Trip;
+import tpe.microservicioadmin.dto.ScooterMinTripsDTO;
 
 import java.util.List;
-//Segun los profesores sacar la url hace que ande el GateAway
-//url comentada  url = "http://localhost:8002"
-@FeignClient(name = "microservicio-trip")
+
+@FeignClient(name = "microservicio-trip", url = "http://localhost:8002")
 public interface TripFeignClient {
 
     @GetMapping("/trips/totalInvoiced")
@@ -19,5 +18,5 @@ public interface TripFeignClient {
     List<ReportTripDTO> getReportTripsByScooter();
 
     @GetMapping("/trips/scootersWithMinTrips")
-    List<Long> getScooterIdsWithMinTripsInYear(@RequestParam int year, @RequestParam int minTrips);
+    List<ScooterMinTripsDTO> getScooterIdsWithMinTripsInYear(@RequestParam int year, @RequestParam int minTrips);
 }

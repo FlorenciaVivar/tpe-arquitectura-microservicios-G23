@@ -7,9 +7,8 @@ import tpe.microservicioadmin.model.Scooter;
 import tpe.microservicioscooter.dto.ScooterQuantityDTO;
 
 import java.util.List;
-//Segun los profesores sacar la url hace que ande el GateAway
-//url comentada  url = "http://localhost:8001"
-@FeignClient(name = "microservicio-scooter")
+
+@FeignClient(name = "microservicio-scooter", url = "http://localhost:8001")
 public interface ScooterFeignClient {
 
     @PostMapping("/scooters/addScooter")
@@ -31,5 +30,5 @@ public interface ScooterFeignClient {
     ScooterQuantityDTO getQuantityScooter();
 
     @PostMapping("/scooters/byIds")
-    List<Scooter> getScootersByIds(@RequestBody List<Long> scooterIds);
+    List<Scooter> getScootersByIds(@RequestParam("ids") List<Long> scooterIds);
 }

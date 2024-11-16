@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tpe.microserviciotrip.dto.ReportTripDTO;
+import tpe.microserviciotrip.dto.ScooterMinTripsDTO;
 import tpe.microserviciotrip.entity.TripEntity;
 import tpe.microserviciotrip.service.TripService;
 import java.util.List;
@@ -79,6 +80,11 @@ public class TripController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/scootersWithMinTrips")
+    public List<ScooterMinTripsDTO> getScootersWithMinTrips(@RequestParam Integer year, @RequestParam Integer minTrips) {
+        return tripService.findScootersWithMinTripsInYear(year, minTrips);
+    }
+
 
 //    @GetMapping("/ping")
 //    public ResponseEntity<String> ping() {

@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import tpe.microservicioadmin.model.Station;
-//Segun los profesores sacar la url hace que ande el GateAway
-//url comentada  url = "http://localhost:8005"
-@FeignClient(name = "microservicio-station")
+
+@FeignClient(name = "microservicio-station", url = "http://localhost:8005")
 public interface StationFeignClient {
 
     @PostMapping("/stations/addStation")
