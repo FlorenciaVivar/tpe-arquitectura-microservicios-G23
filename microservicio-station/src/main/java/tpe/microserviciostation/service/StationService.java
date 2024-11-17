@@ -14,7 +14,7 @@ public class StationService {
 
     public StationEntity addStation(StationEntity station) { return stationRepository.save(station); }
 
-    public StationEntity findById(Long id){
+    public StationEntity findById(String id){
         return stationRepository.findById(id).orElse(null);
     }
 

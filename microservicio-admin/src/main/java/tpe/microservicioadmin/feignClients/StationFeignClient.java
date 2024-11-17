@@ -15,6 +15,6 @@ public interface StationFeignClient {
     ResponseEntity<Station> save(@RequestBody Station station);
 
     @DeleteMapping("/stations/deleteStation/{id}")
-    void delete(@PathVariable Long id);
+    void delete(@PathVariable String id);
 
 }

@@ -16,6 +16,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>config-service</module>
+        <module>eureka-server</module>
+        <module>gateway-s</module>
         <module>microservicio-scooter</module>
         <module>microservicio-trip</module>
         <module>microservicio-user</module>
@@ -31,6 +34,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

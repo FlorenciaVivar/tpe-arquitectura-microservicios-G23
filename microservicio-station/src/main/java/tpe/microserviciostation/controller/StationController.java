@@ -7,6 +7,7 @@ import tpe.microserviciostation.entities.StationEntity;
 import tpe.microserviciostation.service.StationService;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("stations")
 public class StationController {
@@ -23,7 +24,7 @@ public class StationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StationEntity> getStationById(@PathVariable("id") Long id){
+    public ResponseEntity<StationEntity> getStationById(@PathVariable("id") String id){
         StationEntity station = stationService.findById(id);
         if (station == null){
             return ResponseEntity.notFound().build();
@@ -38,7 +39,7 @@ public class StationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStation(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteStation(@PathVariable String id) {
         StationEntity station = stationService.findById(id);
         if (station == null){
             return ResponseEntity.notFound().build();

@@ -113,7 +113,7 @@ public class AdminController {
 
     //Eliminar un parada
     @DeleteMapping("/stations/deleteStation/{id}")
-    public ResponseEntity<Void> deleteStation(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteStation(@PathVariable String id) {
         try {
             stationFeignClient.delete(id);
             return ResponseEntity.noContent().build();
