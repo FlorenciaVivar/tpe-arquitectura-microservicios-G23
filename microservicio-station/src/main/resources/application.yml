@@ -1,6 +1,6 @@
 spring:
   application:
-     name: gateway-s
+    name: microservicio-station
   config:
     import: optional:configserver:http://localhost:8888
 

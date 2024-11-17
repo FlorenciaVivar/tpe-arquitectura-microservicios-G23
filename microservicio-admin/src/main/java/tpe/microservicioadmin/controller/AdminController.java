@@ -17,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/admins")
+@RequestMapping("/api/admins")
 public class AdminController {
     @Autowired
     AdminService adminService;

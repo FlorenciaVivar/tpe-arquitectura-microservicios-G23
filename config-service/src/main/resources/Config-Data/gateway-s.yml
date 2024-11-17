@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-s
+
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: admins
+            uri: lb://microservicio-admin
+            predicates:
+              - Path=/api/admins/**
+          - id: users
+            uri: lb://microservicio-user
+            predicates:
+              - Path=/api/users/**
+          - id: stations
+            uri: lb://microservicio-station
+            predicates:
+              - Path=/api/stations/**
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
