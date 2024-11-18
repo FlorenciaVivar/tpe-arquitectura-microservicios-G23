@@ -79,7 +79,13 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
    - **Método HTTP:** `POST`
    - **Body:**
    {
-      ACA PONER UN EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+     "id": 1,
+     "scooterStop": "Stop A",
+     "status": "active",
+     "available": true,
+     "gps": "40.7128° N, 74.0060° W",
+     "timeInUse": 120,
+     "totalKilometers": 345.6
    }
 
 3. **Obtener un monopatín**
@@ -124,8 +130,10 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
    - **Ruta:** `http://localhost:8005/stations/addStation`
    - **Método HTTP:** `POST`
    - **Body:**
-   { 
-      ACA PONER UN EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+   {
+     "name": "tandil",
+     "location": "Location A",
+     "isActive": true
    }
 
 3. **Obtener una estación**
@@ -167,7 +175,7 @@ Simplemente importa esta colección en Postman para acceder a todas las solicitu
    - **Ruta:** `http://localhost:8003/users/{userId}`
    - **Método HTTP:** `DELETE`
   
-//FALTA IMPLEMENTARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+//FALTA IMPLEMENTARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
 5. **Listado de monopatines cercanos a una ubicación**
    - **Ruta:** `http://localhost:8003/users/{userId}/scooters/nearby`
