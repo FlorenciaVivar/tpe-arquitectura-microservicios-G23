@@ -5,7 +5,7 @@ spring:
     name: microservicio-scooter
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3308/user?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3311/scooter?createDatabaseIfNotExist=true
     username: root
     password: 123
   jpa:

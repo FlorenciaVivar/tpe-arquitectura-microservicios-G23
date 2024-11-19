@@ -5,7 +5,7 @@ spring:
     name: microservicio-admin
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3308/user?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3309/admin?createDatabaseIfNotExist=true
     username: root
     password: 123
   jpa:

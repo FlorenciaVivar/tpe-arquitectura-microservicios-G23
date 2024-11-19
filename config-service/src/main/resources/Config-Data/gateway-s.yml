@@ -24,12 +24,11 @@ spring:
           - id: scooters
             uri: lb://microservicio-scooter
             predicates:
-              - Path=/api/stations/**
+              - Path=/api/scooters/**
           - id: trips
             uri: lb://microservicio-trip
             predicates:
-              - Path=/api/stations/**
-
+              - Path=/api/trips/**
 
 eureka:
   client:
