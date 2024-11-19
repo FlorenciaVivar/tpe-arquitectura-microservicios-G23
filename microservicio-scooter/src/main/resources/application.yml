@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: microservicio-scooter
+  config:
+    import: optional:configserver:http://localhost:8888

@@ -10,7 +10,7 @@ import tpe.microservicioscooter.service.ScooterService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/scooters")
+@RequestMapping("/api/scooters")
 public class ScooterController {
 
    @Autowired
