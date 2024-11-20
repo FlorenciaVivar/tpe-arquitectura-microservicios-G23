@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class LoginDto {
+public class LoginDTO {
 
     @NotNull( message = "El usuario es un campo requerido." )
     @NotEmpty( message = "El usuario es un campo requerido." )

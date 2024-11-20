@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import com.example.gateways.security.Jwt.JwtFilter;
 import com.example.gateways.security.Jwt.TokenProvider;
-import com.example.gateways.service.dto.login.LoginDto;
+import com.example.gateways.service.dto.login.LoginDTO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,22 +27,22 @@ public class JwtController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @PostMapping()
-    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto request ) {
+    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDTO request) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 request.getUsername(),
                 request.getPassword()
         );
 
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate( authenticationToken );
-        SecurityContextHolder.getContext().setAuthentication( authentication );
-        final var jwt = tokenProvider.createToken( authentication );
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final var jwt = tokenProvider.createToken(authentication);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add( JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt );
-        return new ResponseEntity<>( new JWTToken( jwt ), httpHeaders, HttpStatus.OK );
+        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+        return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
     }
 
-    static class JWTToken {
+    public static class JWTToken {
 
         private String idToken;
 
