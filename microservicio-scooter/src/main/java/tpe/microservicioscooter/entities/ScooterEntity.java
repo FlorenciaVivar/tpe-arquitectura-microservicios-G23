@@ -18,4 +18,6 @@ public class ScooterEntity {
     private Integer timeInUse;
     private double totalKilometers;
 
+    public ScooterEntity(long l, String available, boolean b, double v, String stop1, int i) {
+    }
 }
