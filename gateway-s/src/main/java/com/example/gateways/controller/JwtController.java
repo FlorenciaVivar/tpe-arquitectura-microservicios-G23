@@ -3,9 +3,9 @@ package com.example.gateways.controller;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import com.example.gateways.security.JWT.JwtFilter;
-import com.example.gateways.security.JWT.TokenProvider;
-import com.example.gateways.service.dto.login.LoginDTO;
+import com.example.gateways.security.Jwt.JwtFilter;
+import com.example.gateways.security.Jwt.TokenProvider;
+import com.example.gateways.service.dto.login.LoginDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class JwtController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @PostMapping()
-    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDTO request ) {
+    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto request ) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 request.getUsername(),

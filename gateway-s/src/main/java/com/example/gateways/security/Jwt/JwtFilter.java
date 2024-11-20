@@ -1,4 +1,4 @@
-package com.example.gateways.security.JWT;
+package com.example.gateways.security.Jwt;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.example.gateways.security.JWT;
+package com.example.gateways.security.Jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
