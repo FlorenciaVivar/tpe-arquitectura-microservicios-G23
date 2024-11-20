@@ -42,7 +42,7 @@ public class JwtController {
         return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
     }
 
-    public static class JWTToken {
+    protected static class JWTToken {
 
         private String idToken;
 
