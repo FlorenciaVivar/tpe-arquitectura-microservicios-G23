@@ -38,7 +38,7 @@ class TripControllerTest {
 
         ResponseEntity<List<TripEntity>> response = tripController.getAllTrips();
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(2, response.getBody().size());
     }
 
@@ -48,7 +48,7 @@ class TripControllerTest {
 
         ResponseEntity<List<TripEntity>> response = tripController.getAllTrips();
 
-        assertEquals(204, response.getStatusCodeValue());
+        assertEquals(204, response.getStatusCode().value());
         assertNull(response.getBody());
     }
 
@@ -59,7 +59,7 @@ class TripControllerTest {
 
         ResponseEntity<TripEntity> response = tripController.getTripById(1L);
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(trip, response.getBody());
     }
 
@@ -69,7 +69,7 @@ class TripControllerTest {
 
         ResponseEntity<TripEntity> response = tripController.getTripById(1L);
 
-        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(404, response.getStatusCode().value());
         assertNull(response.getBody());
     }
 
@@ -80,7 +80,7 @@ class TripControllerTest {
 
         ResponseEntity<TripEntity> response = tripController.save(trip);
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(trip, response.getBody());
     }
 
@@ -91,7 +91,7 @@ class TripControllerTest {
         ResponseEntity<Void> response = tripController.deleteTripById(1L);
 
         verify(tripService, times(1)).deleteById(1L);
-        assertEquals(204, response.getStatusCodeValue());
+        assertEquals(204, response.getStatusCode().value());
     }
 
     @Test
@@ -101,7 +101,7 @@ class TripControllerTest {
         ResponseEntity<Void> response = tripController.deleteTripById(1L);
 
         verify(tripService, never()).deleteById(anyLong());
-        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(404, response.getStatusCode().value());
     }
 
     @Test
@@ -110,7 +110,7 @@ class TripControllerTest {
 
         ResponseEntity<?> response = tripController.getTotalInvoicedByDate(2023, 1, 3);
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(1000, response.getBody());
     }
 
@@ -124,7 +124,7 @@ class TripControllerTest {
 
         ResponseEntity<List<ReportTripDTO>> response = tripController.getReportKmByScooters();
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(2, response.getBody().size());
         assertEquals(100.5, response.getBody().get(0).getTotalDistance());
     }

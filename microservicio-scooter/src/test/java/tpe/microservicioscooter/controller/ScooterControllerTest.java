@@ -41,7 +41,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<List<ScooterEntity>> response = scooterController.getAllScooters();
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(2, response.getBody().size());
         verify(scooterService, times(1)).getAll();
     }
@@ -54,7 +54,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<List<ScooterEntity>> response = scooterController.getAllScooters();
 
-        assertEquals(204, response.getStatusCodeValue());
+        assertEquals(204, response.getStatusCode().value());
         verify(scooterService, times(1)).getAll();
     }
 
@@ -66,7 +66,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<ScooterEntity> response = scooterController.getScooterById(1L);
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(scooter, response.getBody());
         verify(scooterService, times(1)).findById(1L);
     }
@@ -77,7 +77,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<ScooterEntity> response = scooterController.getScooterById(1L);
 
-        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(404, response.getStatusCode().value());
         verify(scooterService, times(1)).findById(1L);
     }
 
@@ -90,7 +90,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<List<ScooterEntity>> response = scooterController.getAvailableScooters();
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(1, response.getBody().size());
         verify(scooterService, times(1)).getAvailableScooters();
     }
@@ -103,7 +103,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<List<ScooterEntity>> response = scooterController.getAvailableScooters();
 
-        assertEquals(204, response.getStatusCodeValue());
+        assertEquals(204, response.getStatusCode().value());
         verify(scooterService, times(1)).getAvailableScooters();
     }
 
@@ -117,7 +117,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<List<ScooterKilometerDTO>> response = scooterController.getScooterKilometerReport();
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(2, response.getBody().size());
         verify(scooterService, times(1)).calculateTotalKilometersForScooter();
     }
@@ -130,7 +130,7 @@ public class ScooterControllerTest {
 
         ResponseEntity<ScooterQuantityDTO> response = scooterController.getScootersQuantity();
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(quantityDTO, response.getBody());
         verify(scooterService, times(1)).calculateQuantityScooter();
     }
