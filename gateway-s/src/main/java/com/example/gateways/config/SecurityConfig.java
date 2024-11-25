@@ -52,7 +52,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/api/admins/{id}").hasAuthority(AuthorityConstant._ADMIN)
                     .requestMatchers(HttpMethod.POST, "/api/admins/addAdmin").hasAuthority(AuthorityConstant._ADMIN)
                     .requestMatchers(HttpMethod.DELETE, "/api/admins/{id}").hasAuthority(AuthorityConstant._ADMIN)
-                    .requestMatchers(HttpMethod.POST, "/api/scooters/addScooter").hasAuthority(AuthorityConstant._ADMIN)
+                    .requestMatchers(HttpMethod.POST, "api/scooters/addScooter").hasAuthority(AuthorityConstant._ADMIN)
                     .requestMatchers(HttpMethod.DELETE, "/api/scooters/{id}").hasAuthority(AuthorityConstant._ADMIN)
                     .requestMatchers(HttpMethod.PUT, "/api/scooters/maintenance/{id}").hasAuthority(AuthorityConstant._ADMIN)
                     .requestMatchers(HttpMethod.PUT, "/api/scooters/finishMaintenance/{id}").hasAuthority(AuthorityConstant._ADMIN)

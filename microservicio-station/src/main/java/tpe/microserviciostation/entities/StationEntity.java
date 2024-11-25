@@ -1,16 +1,11 @@
 package tpe.microserviciostation.entities;
 
-
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.bson.types.ObjectId;
-
 
 @Document(collection = "station")
 
 public class StationEntity {
-
 
    @Id
     private String id;
