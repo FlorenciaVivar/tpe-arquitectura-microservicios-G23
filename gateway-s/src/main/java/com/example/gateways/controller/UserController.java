@@ -6,10 +6,7 @@ import com.example.gateways.service.UserService;
 import com.example.gateways.service.dto.user.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/usersSecurity")
@@ -22,5 +19,16 @@ public class UserController {
     public ResponseEntity<?> saveUser( @RequestBody @Valid UserDTO userDTO) {
         final var id = userService.saveUser( userDTO );
         return new ResponseEntity<>( id, HttpStatus.CREATED );
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        boolean isDeleted = userService.deleteUser(id);
+
+        if (isDeleted) {
+            return ResponseEntity.ok("Usuario eliminado con éxito.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("El usuario no fue encontrado.");
+        }
     }
 }

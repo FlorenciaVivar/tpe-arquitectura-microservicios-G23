@@ -45,9 +45,9 @@ public class ScooterController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteScooter(@PathVariable Long id) {
+    public ResponseEntity<String> deleteScooter(@PathVariable Long id) {
         scooterService.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Scooter eliminado con éxito");
     }
 
     @PostMapping("/addScooter")

@@ -1,6 +1,7 @@
 package tpe.microserviciostation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tpe.microserviciostation.entities.StationEntity;
@@ -39,12 +40,12 @@ public class StationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStation(@PathVariable String id) {
+    public ResponseEntity<String> deleteStation(@PathVariable String id) {
         StationEntity station = stationService.findById(id);
         if (station == null){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Station with ID " + id + " not found.");
         }
         stationService.delete(station);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Station with ID " + id + " deleted successfully.");
     }
 }
